@@ -10,11 +10,10 @@ generateBtn.addEventListener("click", () => {
   const textValue = urlInput.value.trim();
 
   if (!textValue) {
-    alert("Silakan masukkan URL atau teks terlebih dahulu!");
+    alert("Please enter a URL or text first!");
     return;
   }
 
-  // Membuat QR Code ke elemen HTML5 Canvas secara lokal
   QRCode.toCanvas(
     qrCanvas,
     textValue,
@@ -22,21 +21,18 @@ generateBtn.addEventListener("click", () => {
     function (error) {
       if (error) {
         console.error(error);
-        alert("Gagal menghasilkan QR Code.");
+        alert("Failed to generate QR Code.");
         return;
       }
 
-      // Tampilkan kotak hasil QR
       qrContainer.style.display = "block";
 
-      // Konversi canvas menjadi data URL untuk tombol download
       const imageURL = qrCanvas.toDataURL("image/png");
       downloadLink.href = imageURL;
     },
   );
 });
 
-// Shortcut tekan Enter pada keyboard
 urlInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     generateBtn.click();
